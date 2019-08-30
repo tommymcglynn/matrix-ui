@@ -1,10 +1,14 @@
 # Matrix UI
 
-Simple UI for configurable matrix data. Can submit matrix data to any back-end using a gRPC API.
+Simple UI for configurable matrix data. Can submit matrix data to any back-end via HTTP Rest API.
+
+![alt text](public/images/matrix-ui-screenshot.png "Logo Title Text 1")
+
+This was made to visually create some matrix data so it could be passed to a back-end. I was inspired while working on some matrix-based coding problems.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Launch
 
 In the project directory, you can run:
 
@@ -16,17 +20,20 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
+## Matrix API
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Here is an example of how the UI sends a 3x3 matrix to the back-end.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    POST http://localhost:8080/matrix
+    {
+    	"data": [
+    		[0, 0, 0],
+    		[0, 0, 0],
+    		[0, 0, 0]
+    	]
+    }
+    
+    Response 200:
+    {
+    	"message": "Some output to print in the UI"
+    }
