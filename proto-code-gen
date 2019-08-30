@@ -1,7 +1,0 @@
-#!/bin/bash
-
-echo Generating code from proto file...
-
-protoc src/proto/matrix.proto --js_out=import_style=commonjs:. --grpc-web_out=import_style=commonjs,mode=grpcwebtext:.
-
-echo Done.

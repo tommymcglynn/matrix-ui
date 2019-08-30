@@ -49,13 +49,18 @@
   opacity: 50%;
 }
 
-.submitButton {
+.button {
   display: inline-block;
   background-color: black;
   padding: 14pt 40pt;
   color: white;
   cursor: pointer;
-  margin-top: 10pt;
+  margin: 10pt;
+}
+
+.button.clear {
+  background-color: #FFF43B;
+  color: black;
 }
 
 .submitButton:hover {
@@ -63,17 +68,25 @@
 }
 
 .statusMessage {
-  margin-top: 10pt;
+  margin: 10pt 0;
 }
 
 @media only screen and (max-width: 800px) {
   .settingsButton {
     font-size: 20pt;
   }
+
+  .button {
+    padding: 12pt 36pt;
+  }
 }
 
 @media only screen and (max-width: 600px) {
   .settingsButton {
     font-size: 16pt;
+  }
+
+  .button {
+    padding: 8pt 24pt;
   }
 }

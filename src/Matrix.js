@@ -2,37 +2,20 @@ import React from 'react';
 
 import './Matrix.css';
 
-const MAX_DATA_SIZE = 20;
-
 class Matrix extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {data: Matrix.constructData(MAX_DATA_SIZE, MAX_DATA_SIZE)};
-
         this.onClickCell = this.onClickCell.bind(this);
     }
 
-    static constructData(colCount, rowCount) {
-        let newData = [];
-        for (let row = 0; row < rowCount; row++) {
-            let dataCols = [];
-            for (let col = 0; col < colCount; col++) {
-                dataCols.push(0);
-            }
-            newData.push(dataCols);
-        }
-
-        return newData;
-    }
-
     onClickCell(col, row) {
-        let data = this.state.data;
+        let data = this.props.data;
         let value = data[row][col];
         value = value !== undefined ? value === 1 : false;
         data[row][col] = value ? 0 : 1;
-        this.setState({data: data});
+        this.props.onChange(data);
     }
 
     render() {
@@ -40,8 +23,7 @@ class Matrix extends React.Component {
         let colCount = this.props.cols;
         let rowCount = this.props.rows;
         let cellSize = this.props.cellSize;
-
-        let data = this.state.data;
+        let data = this.props.data;
 
         let cellIndex = 0;
         let onClickCell = this.onClickCell;
