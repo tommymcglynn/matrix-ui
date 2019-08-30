@@ -11,10 +11,26 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {cols: DEFAULT_SIZE, rows: DEFAULT_SIZE, showSettings: false};
+        this.state = {cols: DEFAULT_SIZE, rows: DEFAULT_SIZE, cellSize: MAX_CELL_SIZE, showSettings: false};
 
         this.onColCountChange = this.onColCountChange.bind(this);
         this.onRowCountChange = this.onRowCountChange.bind(this);
+        this.onWindowResize = this.onWindowResize.bind(this);
+    }
+
+    componentDidMount() {
+        this.onWindowResize();
+        window.addEventListener('resize', this.onWindowResize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onWindowResize);
+    }
+
+    onWindowResize() {
+        let maxWidth = window.innerWidth * 0.8;
+        let cellSize = Math.min(Math.floor(maxWidth / this.state.cols / 10) * 10, MAX_CELL_SIZE);
+        this.setState({ cellSize: cellSize });
     }
 
     onColCountChange(e) {
@@ -55,20 +71,13 @@ class App extends React.Component {
             <div className="overlay" onClick={() => this.setState({showSettings: false})}>&nbsp;</div>
         );
 
-        // Matrix cell size
-        var cellSize = MAX_CELL_SIZE;
-        if (window.innerWidth) {
-            let maxWidth = window.innerWidth * 0.8;
-            cellSize = Math.min(Math.floor(maxWidth / this.state.cols / 10) * 10, MAX_CELL_SIZE);
-        }
-
         return (
             <div className="App">
                 {settingsButton}
                 {(this.state.showSettings ? settings : null)}
                 {(this.state.showSettings ? overlay : null)}
                 <div className="mainContainer">
-                    <Matrix cols={this.state.cols} rows={this.state.rows} cellSize={cellSize} />
+                    <Matrix cols={this.state.cols} rows={this.state.rows} cellSize={this.state.cellSize} />
                     <div className="submitButton">Submit</div>
                     <div className="statusMessage">
                         {this.state.cols}x{this.state.rows} Status message
