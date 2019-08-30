@@ -16,9 +16,9 @@ class Matrix extends React.Component {
 
     static constructData(colCount, rowCount) {
         let newData = [];
-        for (var row = 0; row < rowCount; row++) {
-            var dataCols = [];
-            for (var col = 0; col < colCount; col++) {
+        for (let row = 0; row < rowCount; row++) {
+            let dataCols = [];
+            for (let col = 0; col < colCount; col++) {
                 dataCols.push(0);
             }
             newData.push(dataCols);
@@ -43,18 +43,16 @@ class Matrix extends React.Component {
 
         let data = this.state.data;
 
-        var cellIndex = 0;
+        let cellIndex = 0;
         let onClickCell = this.onClickCell;
         let rows = [];
-        for (var row = 0; row < rowCount; row++) {
+        for (let row = 0; row < rowCount; row++) {
             let cols = [];
-            for (var col = 0; col < colCount; col++) {
-                let colIndex = col;
-                let rowIndex = row;
+            for (let col = 0; col < colCount; col++) {
                 let value = data[row][col];
                 let cellClass = value > 0 ? "cell on" : "cell off";
                 cols.push((
-                    <td className={cellClass} width={cellSize} height={cellSize} key={cellIndex} onClick={(e) => onClickCell(colIndex, rowIndex)}>&nbsp;</td>
+                    <td className={cellClass} width={cellSize} height={cellSize} key={cellIndex} onClick={() => onClickCell(col, row)}>&nbsp;</td>
                 ));
                 cellIndex++;
             }

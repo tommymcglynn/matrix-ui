@@ -34,7 +34,7 @@ class App extends React.Component {
     }
 
     onColCountChange(e) {
-        var cols = e.target.value;
+        let cols = e.target.value;
         cols = (cols === undefined) ? MIN_SIZE : parseInt(cols);
         cols = isNaN(cols) ? MIN_SIZE : cols;
         cols = cols > MAX_SIZE ? MAX_SIZE : cols;
@@ -42,7 +42,7 @@ class App extends React.Component {
     }
 
     onRowCountChange(e) {
-        var rows = e.target.value;
+        let rows = e.target.value;
         rows = (rows === undefined) ? MIN_SIZE : parseInt(rows);
         rows = isNaN(rows) ? MIN_SIZE : rows;
         rows = rows > MAX_SIZE ? MAX_SIZE : rows;
